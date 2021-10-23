@@ -14,7 +14,18 @@
 #define _USE_MATH_DEFINES // https://docs.microsoft.com/en-us/cpp/c-runtime-library/math-constants?view=msvc-160
 #include <cmath>
 #include <iostream>
+#include <fstream>
 
+
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <cstdlib>  // for the fail member function
+ // for file I/O definitions
+
+using namespace std;
 
 // these values are constant and not allowed to be changed
 const double SOLAR_MASS = 4 * M_PI * M_PI;
@@ -160,6 +171,22 @@ double energy(const body state[BODIES_COUNT]) {
     return energy;
 }
 
+void print_csv(string filename, body state[]) {
+    ofstream out_stream;
+    out_stream.open(filename);
+    if (out_stream.fail()) {
+        cout << "Sorry, the file couldn't be opened!\n";
+        exit(1);
+    }
+    out_stream << "name; position.x; position.y; position.z" << endl;
+    for (unsigned int i = 0; i < BODIES_COUNT; i++) {
+        out_stream << state[i].name << ';' << state[i].position.x << ';' << state[i].position.y << ';'
+                   << state[i].position.z << endl;
+    }
+    out_stream.close();
+
+}
+
 body state[] = {
         // Sun
         {
@@ -240,19 +267,22 @@ body state[] = {
 
 
 int main(int argc, char **argv) {
+
     if (argc != 2) {
-        std::cout << "This is " << argv[0] << std::endl;
-        std::cout << "Call this program with an integer as program argument" << std::endl;
-        std::cout << "(to set the number of iterations for the n-body simulation)." << std::endl;
+        cout << "This is " << argv[0] << endl;
+        cout << "Call this program with an integer as program argument" << endl;
+        cout << "(to set the number of iterations for the n-body simulation)." << endl;
         return EXIT_FAILURE;
     } else {
         const unsigned int n = atoi(argv[1]);
         offset_momentum(state);
-        std::cout << energy(state) << std::endl;
+        cout << energy(state) << endl;
         for (int i = 0; i < n; ++i) {
             advance(state, 0.01);
+            cout << "i: " << i << std::endl;
         }
-        std::cout << energy(state) << std::endl;
+        print_csv("nbodyCPP.csv", state);
+        cout << energy(state) << endl;
         return EXIT_SUCCESS;
     }
 }
