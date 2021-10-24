@@ -279,7 +279,7 @@ int main(int argc, char **argv) {
         cout << energy(state) << endl;
         for (int i = 0; i < n; ++i) {
             advance(state, 0.01);
-            cout << "i: " << i << std::endl;
+            //cout << "i: " << i << std::endl;
         }
         print_csv("nbodyCPP.csv", state);
         cout << energy(state) << endl;
