@@ -67,6 +67,7 @@ BODIES = {
 
 SYSTEM = tuple(BODIES.values())
 PAIRS = tuple(combinations(SYSTEM))
+NAMES = tuple(BODIES.keys())
 
 
 def advance(dt, n, bodies=SYSTEM, pairs=PAIRS):
@@ -112,15 +113,28 @@ def offset_momentum(ref, bodies=SYSTEM, px=0.0, py=0.0, pz=0.0):
     v[1] = py / m
     v[2] = pz / m
 
+def write_csv(file_name, bodies=SYSTEM, names=NAMES):
+    fh = open(file_name,'w')
+    fh.write('name;position_x;position_y;position_z\n')
+    i = 0
+    for (r, v, m) in bodies:
+        fh.write(f'{names[i]};{r[0]:.3f};{r[1]:.3f};{r[2]:.3f}\n')
+        i += 1
+    fh.close()
+
 
 def main(n, ref="sun"):
     offset_momentum(BODIES[ref])
     report_energy()
     advance(0.01, n)
     report_energy()
+    write_csv('nbodyPython.csv')
 
 
 if __name__ == "__main__":
+
+    main(1)
+    '''
     if len(sys.argv) >= 2:
         main(int(sys.argv[1]))
         sys.exit(0)
@@ -129,3 +143,4 @@ if __name__ == "__main__":
         print("Call this program with an integer as program argument")
         print("(to set the number of iterations for the n-body simulation).")
         sys.exit(1)
+    '''

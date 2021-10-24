@@ -3,9 +3,9 @@ from time import perf_counter
 from nbody import main
 
 steps = 5000;
-steps = 50000;
-steps = 500000;
-steps = 5000000;
+#steps = 50000;
+#steps = 500000;
+#steps = 5000000;
 
 
 start = perf_counter()

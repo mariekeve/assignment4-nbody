@@ -1,4 +1,4 @@
-name; position.x; position.y; position.z
+name;position_x;position_y;position_z
 sun;0.006;-0.005;-0.000
 jupiter;2.109;4.563;-0.066
 saturn;1.682;-9.941;0.105

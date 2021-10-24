@@ -178,7 +178,8 @@ void print_csv(string filename, body state[]) {
         cout << "Sorry, the file couldn't be opened!\n";
         exit(1);
     }
-    out_stream << "name; position.x; position.y; position.z" << endl;
+    out_stream << "name;position.x;position.y;position.z" << endl;
+    out_stream << std::fixed << std::setprecision(3);
     for (unsigned int i = 0; i < BODIES_COUNT; i++) {
         out_stream << state[i].name << ';' << state[i].position.x << ';' << state[i].position.y << ';'
                    << state[i].position.z << endl;
