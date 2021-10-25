@@ -19,9 +19,6 @@
 
 #include <iomanip>
 #include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
 #include <cstdlib>  // for the fail member function
  // for file I/O definitions
 
