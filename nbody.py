@@ -135,7 +135,7 @@ def main(n, ref="sun"):
 
 if __name__ == "__main__":
 
-    main(1)
+    main(50000000)
     '''
     if len(sys.argv) >= 2:
         main(int(sys.argv[1]))
