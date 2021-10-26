@@ -8,6 +8,8 @@
 # 2to3
 # modified by Andriy Misyura
 # slightly modified by bmmeijers
+# slightly modified by Rianne Aalders 4593987 & Marieke van Esch 4545508
+#
 
 import sys
 from math import sqrt, pi as PI

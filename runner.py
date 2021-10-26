@@ -1,3 +1,8 @@
+#
+#
+# Created by Rianne Aalders 4593987 & Marieke van Esch 4545508
+#
+
 import os
 from time import perf_counter
 from nbody import main
